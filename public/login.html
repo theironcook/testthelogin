@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but login doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+
+    <script lang="javascript">
+        function login(){
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value;
+
+            axios.post('login',{
+                email, password
+            }).then((response) => {
+                // redirect to the home page
+                window.location.href = '/';
+            }).catch((err) => {
+                console.log('error! ', err);
+                // todo - nicer popups
+                alert('oops, your login did not work');
+            });
+        }
+    </script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <style>        
+        body {            
+            font-family: 'Roboto', sans-serif;
+            background-image: linear-gradient(lightblue, white);
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: grid;
+            justify-content: center;
+        }
+
+        .login {            
+            margin-top: 5rem;
+            display: grid;
+            grid-template-columns: 100px 350px;
+            grid-template-rows: 40px 6rem 60px;                     
+        }
+
+        .loginTitle {
+            font-size: 32px;
+            grid-row-start: 1;            
+            grid-column-start: 2;
+        }
+
+        .loginIcon {
+            grid-row-start: 2;
+            grid-column-start: 1;
+            justify-self: center;
+            align-self: center;
+            opacity: .5;
+            width: 60px;
+        }
+
+        .loginFields {
+            justify-self: stretch;
+            grid-row-start: 2;
+            grid-column-start: 2;
+        }
+
+        input {
+            height: 2rem;
+            font-size: 1.75rem;
+            padding-left: .25rem;
+            padding-right: .25rem;
+            padding-bottom: .25rem;
+            margin-top: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;            
+            width: 98%;
+        }
+
+        .loginButton {
+            grid-row-start: 3;
+            grid-column-start: 2;
+            justify-self: end;
+            height: 42px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-size: 32px;
+            border-radius: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            margin-right: 0;
+            cursor: pointer;
+            width: 50%;
+        }
+    </style>
+        
+
+    <div class="login">        
+        <span class="loginTitle">Login to Kiki</span>      
+                
+        <img class="loginIcon" src="catNinja1.png"/>
+        
+        <span class="loginFields">
+            <input type="text" id="email" placeholder="email" value="bartwood@gmail.com"/>
+            <input type="text" id="password" placeholder="password" value="supersecret" />
+        </span>
+        
+        <button class="loginButton" onclick="login()">Login</button>
+    </div>
+  </body>
+</html>
